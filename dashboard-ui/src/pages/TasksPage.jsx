@@ -1,7 +1,8 @@
 // src/pages/TasksPage.jsx
-import React, { useState, useEffect } from 'react'; // Added useEffect
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAllTasks, deleteTask } from '../services/taskService'; // Import task service
+import { getAllTasks, deleteTask } from '../services/taskService';
+import SearchInput from '../components/common/SearchInput'; // Import SearchInput
 
 const TasksPage = () => {
   const [tasks, setTasks] = useState([]);
@@ -63,8 +64,11 @@ const TasksPage = () => {
       {error && <p className="text-red-500 bg-red-100 p-3 rounded mb-4 text-center">{error}</p>}
       
       <div className="mb-4">
-        <input type="text" placeholder="Search tasks..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
-               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"/>
+        <SearchInput
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="🔍 Search tasks..."
+        />
       </div>
       <div className="bg-white shadow-md rounded-lg overflow-x-auto">
         <table className="min-w-full leading-normal">

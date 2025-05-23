@@ -1,7 +1,8 @@
 // src/pages/CustomersPage.jsx
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Link is not used directly for add, useNavigate is.
-import { getAllCustomers, deleteCustomer } from '../services/customerService'; // Import customer service
+import { useNavigate } from 'react-router-dom';
+import { getAllCustomers, deleteCustomer } from '../services/customerService';
+import SearchInput from '../components/common/SearchInput'; // Import SearchInput
 
 const CustomersPage = () => {
   const [customers, setCustomers] = useState([]);
@@ -76,15 +77,13 @@ const CustomersPage = () => {
         </button>
       </div>
       
-      {error && <p className="text-red-500 bg-red-100 p-3 rounded mb-4 text-center">{error}</p>} {/* Display error message */}
+      {error && <p className="text-red-500 bg-red-100 p-3 rounded mb-4 text-center">{error}</p>}
 
       <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Search customers..."
+        <SearchInput
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          placeholder="🔍 Search customers..."
         />
       </div>
 
