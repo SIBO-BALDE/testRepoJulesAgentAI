@@ -1,7 +1,8 @@
 // src/pages/NotesPage.jsx
-import React, { useState, useEffect } from 'react'; // Added useEffect
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAllNotes, deleteNote } from '../services/noteService'; // Import note service
+import { getAllNotes, deleteNote } from '../services/noteService';
+import SearchInput from '../components/common/SearchInput'; // Import SearchInput
 
 const NotesPage = () => {
   const [notes, setNotes] = useState([]);
@@ -65,8 +66,11 @@ const NotesPage = () => {
       {error && <p className="text-red-500 bg-red-100 p-3 rounded mb-4 text-center">{error}</p>}
       
       <div className="mb-6">
-        <input type="text" placeholder="Search notes..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
-               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+        <SearchInput
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="🔍 Search notes..."
+        />
       </div>
       
       {filteredNotes.length > 0 ? (

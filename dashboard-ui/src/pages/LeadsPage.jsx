@@ -1,7 +1,8 @@
 // src/pages/LeadsPage.jsx
-import React, { useState, useEffect } from 'react'; // Added useEffect
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAllLeads, deleteLead } from '../services/leadService'; // Import lead service
+import { getAllLeads, deleteLead } from '../services/leadService';
+import SearchInput from '../components/common/SearchInput'; // Import SearchInput
 
 const LeadsPage = () => {
   const [leads, setLeads] = useState([]);
@@ -64,8 +65,11 @@ const LeadsPage = () => {
       {error && <p className="text-red-500 bg-red-100 p-3 rounded mb-4 text-center">{error}</p>}
 
       <div className="mb-4">
-        <input type="text" placeholder="Search leads..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
-               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+        <SearchInput
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="🔍 Search leads..."
+        />
       </div>
       <div className="bg-white shadow-md rounded-lg overflow-x-auto">
         <table className="min-w-full leading-normal">
